@@ -36,47 +36,51 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/calvacoba" />
 
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username" />
-
-        <EditText
-            android:id="@+id/editTextNama"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:inputType="textPersonName" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Email" />
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/editTextNama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Nama anda"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editTextEmail"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Password" />
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email anda"
+                android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/editTextPassword"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password anda"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/textView5"
@@ -123,23 +127,34 @@
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/radioButtonBM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="false"
                 android:text="Belum Menikah" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="false"
                 android:text="Menikah" />
 
         </RadioGroup>
 
-        <EditText
-            android:id="@+id/editTextJAnak"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:hint="Jumlah Anak" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextJAnak"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:hint="Jumlah Anak"
+                android:inputType="numberSigned"
+                android:visibility="gone" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             style="@style/Base.TextAppearance.AppCompat.Medium"
@@ -214,32 +229,38 @@
                 android:id="@+id/buttonSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Submit" />
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bgbtn"
+                android:text="Submit"
+                android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/buttonClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clear" />
+                android:background="@drawable/bgbtn"
+                android:text="Clear"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            style="@style/TextAppearance.AppCompat.Medium"
             android:id="@+id/textViewTK"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Terimakasih telah mendaftar" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Terimakasih telah mendaftar"
+            android:visibility="gone" />
 
         <TextView
-            style="@style/Base.TextAppearance.AppCompat.Large"
             android:id="@+id/textViewHasil"
+            style="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hasil" />
+            tools:text="Hasil" />
 
     </LinearLayout>
 

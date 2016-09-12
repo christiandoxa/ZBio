@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner asalProv, asalKot;
     Button submit, clear;
     TextView tvTK, tvHasil;
+    RadioButton rbBM;
     String[][] arKota = {
             {"Jakarta Barat", "Jakarta Pusat", "Jakarta Selatan", "Jakarta Timur", "Jakarta Utara"},
             {"Bandung", "Cirebon", "Bekasi"},
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         clear = (Button) findViewById(R.id.buttonClear);
         tvTK = (TextView) findViewById(R.id.textViewTK);
         tvHasil = (TextView) findViewById(R.id.textViewHasil);
+        rbBM = (RadioButton) findViewById(R.id.radioButtonBM);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listKota);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rgStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radioButtonBM) {
+                    findViewById(R.id.editTextJAnak).setVisibility(View.GONE);
+                }
+                else {
+                    findViewById(R.id.editTextJAnak).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,14 +98,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void doSubmit() {
         boolean valid = true;
-        String hasil = null;
+        String hasil = "";
         String jk = null;
         String staatus = null;
         String username = user.getText().toString();
         String surel = email.getText().toString();
         String pass = password.getText().toString();
         String anak = jAnak.getText().toString();
+        String kota = asalKot.getSelectedItem().toString();
+        String prov = asalProv.getSelectedItem().toString();
 
+        if (cbRelasi.isChecked()) hasil += "Internet\n";
+        if (cbIklan.isChecked()) hasil += "Iklan\n";
+        if (cbRelasi.isChecked()) hasil += "Relasi";
         if (rgJK.getCheckedRadioButtonId() != -1) {
             RadioButton rbJK = (RadioButton) findViewById(rgJK.getCheckedRadioButtonId());
             jk = rbJK.getText().toString();
@@ -107,8 +127,30 @@ public class MainActivity extends AppCompatActivity {
             tvHasil.setText("Belum mengisi status");
             valid = false;
         }
-        if (valid){
-            tvHasil.setText("Nama anda " + username + " berhasil mendaftar dengan informasi sebagai berikut\n\n" + "Email         : " + surel + "\nPassword : " + pass);
+        if (username.isEmpty()) {
+            user.setError("Username belum diisi");
+            valid = false;
+        }
+        if (surel.isEmpty()) {
+            email.setError("Email belum diisi");
+            valid = false;
+        }
+        if (pass.isEmpty()) {
+            password.setError("Password belum diisi");
+            valid = false;
+        }
+        if (username.length() <= 3) {
+            user.setError("Nama minimal 3 karakter");
+        }
+        if (pass.length() <= 6) {
+            password.setError("Password minimal 6 karakter");
+        }
+        if (surel.length() <= 4) {
+            email.setError("Email minimal 4 karakter");
+        }
+        if (valid) {
+            tvTK.setVisibility(View.VISIBLE);
+            tvHasil.setText("Nama anda " + username + " berhasil mendaftar dengan informasi sebagai berikut\n\n" + "Email         : " + surel + "\nPassword : " + pass + "\n\nJenis Kelamin : " + jk + "\nStatus               : " + staatus + "\nJumlah Anak   : " + anak + "\n\nAsal Provinsi : " + prov + "\nAsal Kota       : " + kota + "\n\nAnda mengetahui program ini dari\n" + hasil);
         }
     }
 }
