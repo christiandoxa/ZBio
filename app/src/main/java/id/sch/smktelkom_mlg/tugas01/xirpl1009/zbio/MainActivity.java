@@ -94,6 +94,22 @@ public class MainActivity extends AppCompatActivity {
                 doSubmit();
             }
         });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doClear();
+            }
+        });
+    }
+
+    private void doClear() {
+        user.setText("");
+        email.setText("");
+        password.setText("");
+        jAnak.setText("");
+        tvHasil.setText("");
+        tvTK.setVisibility(View.GONE);
     }
 
     private void doSubmit() {
